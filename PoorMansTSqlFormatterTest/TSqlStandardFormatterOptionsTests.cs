@@ -52,6 +52,9 @@ namespace PoorMansTSqlFormatterTests
             Assert.IsTrue(options.UppercaseKeywords);
             Assert.IsFalse(options.HTMLColoring);
             Assert.IsFalse(options.KeywordStandardization);
+            Assert.IsFalse( options.AddBracketsAroundNames );
+            Assert.IsFalse( options.RemoveBracketsAroundNames );
+            Assert.IsFalse( options.IndentJoins );
         }
 
         [Test]
@@ -79,6 +82,9 @@ namespace PoorMansTSqlFormatterTests
                 + ",UppercaseKeywords=false"
                 + ",HTMLColoring=true"
                 + ",KeywordStandardization=true"
+                + ",AddBracketsAroundNames=true"
+                + ",RemoveBracketsAroundNames=true"
+                + ",IndentJoins=true"
             );
 
             Assert.AreEqual("    ", options.IndentString);
@@ -94,6 +100,9 @@ namespace PoorMansTSqlFormatterTests
             Assert.IsFalse(options.UppercaseKeywords);
             Assert.IsTrue(options.HTMLColoring);
             Assert.IsTrue(options.KeywordStandardization);
+            Assert.IsTrue( options.AddBracketsAroundNames );
+            Assert.IsTrue( options.RemoveBracketsAroundNames );
+            Assert.IsTrue( options.IndentJoins );
         }
 
         [Test]
@@ -113,7 +122,10 @@ namespace PoorMansTSqlFormatterTests
                     BreakJoinOnSections = true,
                     UppercaseKeywords = false,
                     HTMLColoring = true,
-                    KeywordStandardization = true
+                    KeywordStandardization = true,
+                    AddBracketsAroundNames = true,
+                    RemoveBracketsAroundNames= true,
+                    IndentJoins = true
                 };
 
             var serializedString = expected.ToSerializedString();
@@ -133,6 +145,9 @@ namespace PoorMansTSqlFormatterTests
             Assert.AreEqual(expected.UppercaseKeywords, actual.UppercaseKeywords);
             Assert.AreEqual(expected.HTMLColoring, actual.HTMLColoring);
             Assert.AreEqual(expected.KeywordStandardization, actual.KeywordStandardization);
+            Assert.AreEqual(expected.AddBracketsAroundNames, actual.AddBracketsAroundNames);
+            Assert.AreEqual(expected.RemoveBracketsAroundNames, actual.RemoveBracketsAroundNames);
+            Assert.AreEqual(expected.IndentJoins, actual.IndentJoins);
 
         }
 

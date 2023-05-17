@@ -102,6 +102,9 @@ namespace PoorMansTSqlFormatterDemo
             this.displayFormattingOptionsAreaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkAddBrackets = new System.Windows.Forms.CheckBox();
+            this.chkRemoveBrackets = new System.Windows.Forms.CheckBox();
+            this.chkIndentJoins = new System.Windows.Forms.CheckBox();
             this.txt_Input = new PoorMansTSqlFormatterDemo.FrameworkClassReplacements.SelectableTextBox();
             this.txt_TokenizedSql = new PoorMansTSqlFormatterDemo.FrameworkClassReplacements.SelectableTextBox();
             this.txt_ParsedXml = new PoorMansTSqlFormatterDemo.FrameworkClassReplacements.SelectableTextBox();
@@ -262,6 +265,9 @@ namespace PoorMansTSqlFormatterDemo
             // 
             // grp_Options
             // 
+            this.grp_Options.Controls.Add(this.chkIndentJoins);
+            this.grp_Options.Controls.Add(this.chkRemoveBrackets);
+            this.grp_Options.Controls.Add(this.chkAddBrackets);
             this.grp_Options.Controls.Add(this.chk_BreakJoinOnSections);
             this.grp_Options.Controls.Add(this.chk_ExpandInLists);
             this.grp_Options.Controls.Add(this.chk_EnableKeywordStandardization);
@@ -564,6 +570,27 @@ namespace PoorMansTSqlFormatterDemo
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // chkAddBrackets
+            // 
+            resources.ApplyResources(this.chkAddBrackets, "chkAddBrackets");
+            this.chkAddBrackets.Name = "chkAddBrackets";
+            this.chkAddBrackets.UseVisualStyleBackColor = true;
+            this.chkAddBrackets.CheckedChanged += new System.EventHandler( this.FormatSettingsControlChanged );
+            // 
+            // chkRemoveBrackets
+            // 
+            resources.ApplyResources(this.chkRemoveBrackets, "chkRemoveBrackets");
+            this.chkRemoveBrackets.Name = "chkRemoveBrackets";
+            this.chkRemoveBrackets.UseVisualStyleBackColor = true;
+            this.chkRemoveBrackets.CheckedChanged += new System.EventHandler( this.FormatSettingsControlChanged );
+            // 
+            // chkIndentJoins
+            // 
+            resources.ApplyResources(this.chkIndentJoins, "chkIndentJoins");
+            this.chkIndentJoins.Name = "chkIndentJoins";
+            this.chkIndentJoins.UseVisualStyleBackColor = true;
+            this.chkIndentJoins.CheckedChanged += new System.EventHandler( this.FormatSettingsControlChanged );
+            // 
             // txt_Input
             // 
             this.txt_Input.AcceptsReturn = true;
@@ -720,6 +747,9 @@ namespace PoorMansTSqlFormatterDemo
 		private System.Windows.Forms.Label lbl_ClauseBreaks;
 		private System.Windows.Forms.TextBox txt_StatementBreaks;
 		private System.Windows.Forms.Label lbl_StatementBreaks;
+        private System.Windows.Forms.CheckBox chkIndentJoins;
+        private System.Windows.Forms.CheckBox chkRemoveBrackets;
+        private System.Windows.Forms.CheckBox chkAddBrackets;
     }
 }
 

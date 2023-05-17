@@ -47,7 +47,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
         }
 
         [Obsolete("Use the constructor with the TSqlStandardFormatterOptions parameter")]
-        public TSqlStandardFormatter(string indentString, int spacesPerTab, int maxLineWidth, bool expandCommaLists, bool trailingCommas, bool spaceAfterExpandedComma, bool expandBooleanExpressions, bool expandCaseStatements, bool expandBetweenConditions, bool breakJoinOnSections, bool uppercaseKeywords, bool htmlColoring, bool keywordStandardization, bool addBracketsAroundNames, bool removeBracketsAroundNames)
+        public TSqlStandardFormatter(string indentString, int spacesPerTab, int maxLineWidth, bool expandCommaLists, bool trailingCommas, bool spaceAfterExpandedComma, bool expandBooleanExpressions, bool expandCaseStatements, bool expandBetweenConditions, bool breakJoinOnSections, bool uppercaseKeywords, bool htmlColoring, bool keywordStandardization, bool addBracketsAroundNames, bool removeBracketsAroundNames, bool indentJoins)
         {
             Options = new TSqlStandardFormatterOptions
                 {
@@ -65,7 +65,8 @@ namespace PoorMansTSqlFormatterLib.Formatters
                     HTMLColoring = htmlColoring,
                     KeywordStandardization = keywordStandardization,
                     AddBracketsAroundNames = addBracketsAroundNames,
-                    RemoveBracketsAroundNames = removeBracketsAroundNames
+                    RemoveBracketsAroundNames = removeBracketsAroundNames,
+                    IndentJoins = indentJoins
                 };
 
             if (keywordStandardization)
@@ -160,9 +161,18 @@ namespace PoorMansTSqlFormatterLib.Formatters
 
                 case SqlStructureConstants.ENAME_SQL_CLAUSE:
                     state.UnIndentInitialBreak = true;
+                    var indentJoins = Options.IndentJoins && contentElement.Children.FirstOrDefault()?.GetAttributeValue("simpleText")?.ToUpper().Contains("JOIN") == true;
+                    if ( indentJoins )
+                    {
+                        state.IncrementIndent();
+                    }
                     ProcessSqlNodeList(contentElement.Children, state.IncrementIndent());
                     state.DecrementIndent();
-					if (Options.NewClauseLineBreaks > 0)
+                    if ( indentJoins )
+                    {
+                        state.DecrementIndent();
+                    }
+                    if ( Options.NewClauseLineBreaks > 0)
 	                    state.BreakExpected = true;
 					if (Options.NewClauseLineBreaks > 1)
 						state.AdditionalBreaksExpected = Options.NewClauseLineBreaks - 1;

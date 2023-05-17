@@ -59,7 +59,8 @@ namespace PoorMansTSqlFormatterCmdLine
                     UppercaseKeywords = true,
 					ExpandInLists = true,
                     AddBracketsAroundNames = false,
-                    RemoveBracketsAroundNames = false
+                    RemoveBracketsAroundNames = false,
+                    IndentJoins = false,
                 };
             
             //bulk formatter options
@@ -92,6 +93,7 @@ namespace PoorMansTSqlFormatterCmdLine
               .Add("sk|standardizeKeywords", delegate(string v) { options.KeywordStandardization = v != null; })
               .Add("ab|addBracketsAroundNames", delegate (string v) { options.AddBracketsAroundNames = v != null; })
               .Add("rb|removeBracketsAroundNames", delegate (string v) { options.RemoveBracketsAroundNames = v != null; })
+              .Add("ij|indentJoins", delegate (string v) { options.IndentJoins = v != null; } )
 
               .Add("ae|allowParsingErrors", delegate(string v) { allowParsingErrors = v != null; })
               .Add("e|extensions=", delegate(string v) { extensions.Add((v.StartsWith(".") ? "" : ".") + v); })

@@ -104,6 +104,9 @@ namespace PoorMansTSqlFormatterDemo
             chk_UppercaseKeywords.Checked = Properties.Settings.Default.UppercaseKeywords;
             chk_Coloring.Checked = Properties.Settings.Default.StandardColoring;
             chk_EnableKeywordStandardization.Checked = Properties.Settings.Default.EnableKeywordStandardization;
+            chkAddBrackets.Checked = Properties.Settings.Default.AddBrackets;
+            chkRemoveBrackets.Checked = Properties.Settings.Default.RemoveBrackets;
+            chkIndentJoins.Checked = Properties.Settings.Default.IndentJoins;
 
             radio_Formatting_Identity.Checked = Properties.Settings.Default.Formatter.Equals(FORMATTER_IDENTITY, StringComparison.InvariantCultureIgnoreCase);
             chk_IdentityColoring.Checked = Properties.Settings.Default.IdentityColoring;
@@ -150,6 +153,9 @@ namespace PoorMansTSqlFormatterDemo
             Properties.Settings.Default.UppercaseKeywords = chk_UppercaseKeywords.Checked;
             Properties.Settings.Default.StandardColoring = chk_Coloring.Checked;
             Properties.Settings.Default.EnableKeywordStandardization = chk_EnableKeywordStandardization.Checked;
+            Properties.Settings.Default.AddBrackets = chkAddBrackets.Checked;
+            Properties.Settings.Default.RemoveBrackets = chkRemoveBrackets.Checked;
+            Properties.Settings.Default.IndentJoins = chkIndentJoins.Checked;
 
             if (radio_Formatting_Identity.Checked) Properties.Settings.Default.Formatter = FORMATTER_IDENTITY; 
             Properties.Settings.Default.IdentityColoring = chk_IdentityColoring.Checked;
@@ -186,7 +192,10 @@ namespace PoorMansTSqlFormatterDemo
                         HTMLColoring = chk_Coloring.Checked,
 						KeywordStandardization = chk_EnableKeywordStandardization.Checked,
 						NewStatementLineBreaks = int.Parse(txt_StatementBreaks.Text),
-						NewClauseLineBreaks = int.Parse(txt_ClauseBreaks.Text)
+						NewClauseLineBreaks = int.Parse(txt_ClauseBreaks.Text),
+                        AddBracketsAroundNames = chkAddBrackets.Checked,
+                        RemoveBracketsAroundNames = chkRemoveBrackets.Checked,
+                        IndentJoins = chkIndentJoins.Checked
 					});
             }
             else if (radio_Formatting_Identity.Checked)

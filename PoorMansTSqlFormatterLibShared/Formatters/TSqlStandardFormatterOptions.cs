@@ -49,6 +49,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
 			NewStatementLineBreaks = 2;
             AddBracketsAroundNames = false;
             RemoveBracketsAroundNames = false;
+            IndentJoins = false;
 		}
 
         //Doesn't particularly need to be lazy-loaded, and doesn't need to be threadsafe.
@@ -86,6 +87,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
 				else if (key == "NewStatementLineBreaks") NewStatementLineBreaks = Convert.ToInt32(value);
                 else if (key == "AddBracketsAroundNames") AddBracketsAroundNames = Convert.ToBoolean(value);
                 else if (key == "RemoveBracketsAroundNames") RemoveBracketsAroundNames = Convert.ToBoolean(value);
+                else if (key == nameof(IndentJoins)) IndentJoins = Convert.ToBoolean(value);
                 else throw new ArgumentException("Unknown option: " + key);
             }
 
@@ -117,7 +119,7 @@ namespace PoorMansTSqlFormatterLib.Formatters
 			NewStatementLineBreaks = 2;
             if (AddBracketsAroundNames != _defaultOptions.AddBracketsAroundNames) overrides.Add("AddBracketsAroundNames", AddBracketsAroundNames.ToString());
             if (RemoveBracketsAroundNames != _defaultOptions.RemoveBracketsAroundNames) overrides.Add("RemoveBracketsAroundNames", RemoveBracketsAroundNames.ToString());
-
+            if (IndentJoins != _defaultOptions.IndentJoins) overrides.Add(nameof(IndentJoins), IndentJoins.ToString());
             if (overrides.Count == 0) return string.Empty;
             return string.Join(",", overrides.Select((kvp) => kvp.Key + "=" + kvp.Value).ToArray());
            
@@ -153,6 +155,6 @@ namespace PoorMansTSqlFormatterLib.Formatters
 		public int NewStatementLineBreaks { get; set; }
         public bool AddBracketsAroundNames { get; set; }
         public bool RemoveBracketsAroundNames { get; set; }
-
+        public bool IndentJoins { get; set; }
     }
 }
